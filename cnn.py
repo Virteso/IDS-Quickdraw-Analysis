@@ -8,7 +8,6 @@ import funfunctions as fun
 def display_stuff():
     x_train, x_test, y_train, y_test = fs.gather_data()
     for i in range(len(x_test)):
-        print ("awkdjnaksdnasjdas")
         fun.display_picture(x_test[i])
         if i > 10: break
 

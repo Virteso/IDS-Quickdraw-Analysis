@@ -1,9 +1,11 @@
-DRAWING_FOLDER_PATH = "./data/numpy_bitmap/"
+NUMPY_DRAWING_FOLDER_PATH = "./data/numpy_bitmap/"
+BINARY_DRAWING_FOLDER_PATH = "./data/"
 DRAWING_NAMES = [
-        "airplane", "bed", "whale", "shovel",
+        "angel", "airplane", "bed", "whale", "shovel",
         "tractor", "panda", "bat", "camel",
         "cow", "ant", "smiley face",
 ]
+FILENAME_PREFIX = "HUGE"
 
 LOAD_DRAWINGS_FROM_EACH_FILE = 2000
 TRAIN_PROPORTION = 0.7

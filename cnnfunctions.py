@@ -16,7 +16,7 @@ def gather_data(class_names=config.DRAWING_NAMES):
         dname = class_names[i]
         
         print("\t", "loading file", dname + ".npy")
-        npa = np.load(config.DRAWING_FOLDER_PATH + dname + ".npy")
+        npa = np.load(config.NUMPY_DRAWING_FOLDER_PATH + dname + ".npy")
                 
         print("\t\t", "storing...")
         for j in range(min(config.LOAD_DRAWINGS_FROM_EACH_FILE, len(npa))):
