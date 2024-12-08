@@ -42,7 +42,5 @@ text = "make prediction"
 [node name="PredictionResultLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Predictions:
-1. Panda (218)
-2. Shovel (23)
-3. bleeb (-2191)"
+text = "Enter a model file location, drawing file location and click \"make prediction\" to make a prediction and get results."
+autowrap_mode = 2

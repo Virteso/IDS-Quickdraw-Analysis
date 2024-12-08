@@ -2,11 +2,10 @@ NUMPY_DRAWING_FOLDER_PATH = "./data/numpy_bitmap/"
 BINARY_DRAWING_FOLDER_PATH = "./data/"
 DRAWING_NAMES = [
         "angel", "airplane", "bed", "whale", "shovel",
-        "tractor", "panda", "bat", "camel",
-        "cow", "ant", "bicycle", "bear", "door", 
-        "fan", "flying saucer", "foot", "lipstick",
-        "postcard", "popsicle", "rainbow", "sock", 
-        "strawberry", "washing machine", "yoga"
+        "tractor", "panda", "bat", "camel", "cow",
+        "ant", "bicycle", "bear", "door", "fan", 
+        "flying saucer", "foot", "lipstick","postcard", "popsicle",
+        "rainbow", "sock", "strawberry", "washing machine", "yoga"
 ]
 FILENAME_PREFIX = ""
 
