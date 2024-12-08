@@ -46,9 +46,11 @@ def create_model(classes=config.DRAWING_NAMES):
     model.add(layers.Conv2D(64, (3, 3), activation="relu", padding="same"))
     model.add(layers.MaxPooling2D((2, 2)))
     model.add(layers.Conv2D(64, (3, 3), activation="relu", padding="same"))
+    model.add(layers.BatchNormalization())
     
     model.add(layers.Flatten())
-    model.add(layers.Dense(65, activation="relu"))
+    model.add(layers.Dense(128, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.01)))
+    model.add(layers.Dropout(0.5))
     model.add(layers.Dense(len(classes)))
     
     print("\t", "compiling model...")
@@ -62,11 +64,14 @@ def create_model(classes=config.DRAWING_NAMES):
 
 def train_model(model, x_train, x_test, y_train, y_test):
     print("training the model...")
+    early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
+    lr_scheduler = tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=3)
     return model.fit(
         x_train,
         y_train,
-        epochs=10,
-        validation_data=(x_test, y_test)
+        epochs=15,
+        validation_data=(x_test, y_test),
+        callbacks=[early_stopping, lr_scheduler],
     )
 
 
