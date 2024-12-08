@@ -16,7 +16,7 @@ def gather_data(class_names=config.DRAWING_NAMES):
         dname = class_names[i]
         
         print("\t", "loading file", dname + ".npy")
-        npa = np.load(config.NUMPY_DRAWING_FOLDER_PATH + dname + ".npy")
+        npa = np.load(config.NUMPY_DRAWING_FOLDER_PATH + config.FILENAME_PREFIX + dname + ".npy")
                 
         print("\t\t", "storing...")
         for j in range(min(config.LOAD_DRAWINGS_FROM_EACH_FILE, len(npa))):
@@ -41,11 +41,11 @@ def create_model(classes=config.DRAWING_NAMES):
     print("creating model.")
     model = models.Sequential()
     model.add(layers.Input(shape=config.DRAWING_IMAGE_SIZE))
-    model.add(layers.Conv2D(32, (3, 3), activation="relu"))
+    model.add(layers.Conv2D(32, (3, 3), activation="relu", padding="same"))
     model.add(layers.MaxPooling2D((2, 2)))
-    model.add(layers.Conv2D(64, (3, 3), activation="relu"))
+    model.add(layers.Conv2D(64, (3, 3), activation="relu", padding="same"))
     model.add(layers.MaxPooling2D((2, 2)))
-    model.add(layers.Conv2D(64, (3, 3), activation="relu"))
+    model.add(layers.Conv2D(64, (3, 3), activation="relu", padding="same"))
     
     model.add(layers.Flatten())
     model.add(layers.Dense(65, activation="relu"))

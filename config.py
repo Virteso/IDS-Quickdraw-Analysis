@@ -5,7 +5,7 @@ DRAWING_NAMES = [
         "tractor", "panda", "bat", "camel",
         "cow", "ant", "smiley face",
 ]
-FILENAME_PREFIX = "HUGE"
+FILENAME_PREFIX = ""
 
 LOAD_DRAWINGS_FROM_EACH_FILE = 2000
 TRAIN_PROPORTION = 0.7
