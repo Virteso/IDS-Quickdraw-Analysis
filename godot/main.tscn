@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj2h20d4n8wae"]
+[gd_scene load_steps=4 format=3 uid="uid://cj2h20d4n8wae"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_5laph"]
 [ext_resource type="PackedScene" uid="uid://7m8hxols4o6r" path="res://drawing_pad_and_bitmap_display.tscn" id="2_vch4d"]
+[ext_resource type="PackedScene" uid="uid://bxilrntlaubxj" path="res://predictions.tscn" id="3_mtvif"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -33,7 +34,6 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Panel" type="Panel" parent="HBoxContainer"]
+[node name="Predictions" parent="HBoxContainer" instance=ExtResource("3_mtvif")]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.08

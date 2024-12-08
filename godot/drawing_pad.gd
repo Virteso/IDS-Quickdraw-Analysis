@@ -1,5 +1,7 @@
 extends ColorRect
 
+signal stroke_finished
+
 var _last_time: int = -1
 
 var _strokes: Array[PackedVector2Array] = []
@@ -13,9 +15,10 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("mouse_click"):
 		_current_stroke.append(current_pos)
-	elif Input.is_action_just_released("mouse_click"):
+	elif Input.is_action_just_released("mouse_click") and not _current_stroke.is_empty():
 		_strokes.append(_current_stroke)
 		_current_stroke = []
+		stroke_finished.emit()
 	
 	queue_redraw()
 

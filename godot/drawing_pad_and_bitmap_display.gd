@@ -1,4 +1,4 @@
-extends MarginContainer
+extends PanelContainer
 
 const DrawingPad := preload("res://drawing_pad.gd")
 
@@ -15,10 +15,7 @@ func _ready() -> void:
 		bitmap_display.texture = _placeholder_texture
 	)
 	%ConvertButton.pressed.connect(func() -> void:
-		var drawing := drawing_pad.to_object()
-		var image := drawing.get_image()
-		image.resize(28, 28, Image.INTERPOLATE_LANCZOS)
-		bitmap_display.texture = ImageTexture.create_from_image(image)
+		var image := display_image()
 		var err := Drawing.image_to_npy(image, filename_edit.text)
 		if err != OK:
 			filename_edit.placeholder_text = error_string(err)
@@ -29,3 +26,12 @@ func _ready() -> void:
 				filename_edit.modulate = Color.WHITE
 			, CONNECT_ONE_SHOT)
 	)
+	drawing_pad.stroke_finished.connect(display_image)
+
+
+func display_image() -> Image:
+	var drawing := drawing_pad.to_object()
+	var image := drawing.get_image()
+	image.resize(28, 28, Image.INTERPOLATE_LANCZOS)
+	bitmap_display.texture = ImageTexture.create_from_image(image)
+	return image

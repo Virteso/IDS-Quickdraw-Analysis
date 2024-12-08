@@ -21,7 +21,8 @@ def gather_data(class_names=config.DRAWING_NAMES):
         print("\t\t", "storing...")
         for j in range(min(config.LOAD_DRAWINGS_FROM_EACH_FILE, len(npa))):
             data.append(
-                npa_into_2d_image(np.rot90(npa_into_2d_image(npa[j]), j % 4, (2, 1)))) # normalise the data too and rotate
+                npa_into_2d_image(npa[j]))
+                #npa_into_2d_image(np.rot90(npa_into_2d_image(npa[j]), j % 4, (2, 1)))) # normalise the data too and rotate
             labels.append(i)
     
     print("\t", "converting to np...")
@@ -41,7 +42,7 @@ def create_model(classes=config.DRAWING_NAMES):
     
     print("creating model.")
     model = models.Sequential()
-    model.add(layers.Input(shape=config.DRAWING_IMAGE_SIZE))
+    model.add(layers.Input(shape=(1, config.DRAWING_IMAGE_SIZE, config.DRAWING_IMAGE_SIZE)))
     model.add(layers.Conv2D(32, (3, 3), activation="relu", padding="same"))
     model.add(layers.MaxPooling2D((2, 2)))
     model.add(layers.Conv2D(64, (3, 3), activation="relu", padding="same"))
@@ -84,4 +85,4 @@ def get_class_probas(probas, class_names=config.DRAWING_NAMES):
 
 
 def npa_into_2d_image(nparr):
-	return np.reshape(nparr / 255.0, config.DRAWING_IMAGE_SIZE)
+	return np.reshape(nparr / 255.0, (1, config.DRAWING_IMAGE_SIZE, config.DRAWING_IMAGE_SIZE))

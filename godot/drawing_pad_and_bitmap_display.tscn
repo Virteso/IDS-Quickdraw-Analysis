@@ -6,7 +6,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l1m5l"]
 size = Vector2(28, 28)
 
-[node name="DrawingPadAndBitmapDisplay" type="MarginContainer"]
+[node name="DrawingPadAndBitmapDisplay" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,78 +14,84 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_obgad")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="DrawingPad" parent="HBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("1_tjhb3")]
+[node name="DrawingPad" parent="VBoxContainer/HBoxContainer/MarginContainer" instance=ExtResource("1_tjhb3")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
 alignment = 1
 
-[node name="ClearButton" type="Button" parent="HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="ClearButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Clear"
+text = "Clear ø"
 
-[node name="ConvertButton" type="Button" parent="HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="ConvertButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Convert ↓"
+text = "Save ↓"
 
-[node name="FilenameEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="FilenameEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "filename"
 
-[node name="LoadButton" type="Button" parent="HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-disabled = true
-text = "Load"
-
-[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer3"]
 layout_mode = 2
 alignment = 1
 
-[node name="BitmapDisplay" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
+[node name="BitmapDisplay" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_l1m5l")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="DrawingInfoLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
