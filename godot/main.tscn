@@ -31,3 +31,9 @@ grow_vertical = 2
 
 [node name="DrawingPadAndBitmapDisplay" parent="HBoxContainer" instance=ExtResource("2_vch4d")]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.08
