@@ -2,15 +2,20 @@ extends ColorRect
 
 signal stroke_finished
 
-var _last_time: int = -1
+var _mouse_on := false
 
 var _strokes: Array[PackedVector2Array] = []
 var _current_stroke: PackedVector2Array
 
 
+func _ready() -> void:
+	mouse_entered.connect(func() -> void: _mouse_on = true)
+	mouse_exited.connect(func() -> void: _mouse_on = false)
+
+
 func _process(delta: float) -> void:
 	var current_pos := get_local_mouse_position().clamp(Vector2.ZERO, size)
-	if not get_rect().has_point(current_pos):
+	if not _mouse_on:
 		return
 	
 	if Input.is_action_pressed("mouse_click"):
