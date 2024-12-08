@@ -20,7 +20,8 @@ def gather_data(class_names=config.DRAWING_NAMES):
                 
         print("\t\t", "storing...")
         for j in range(min(config.LOAD_DRAWINGS_FROM_EACH_FILE, len(npa))):
-            data.append(npa_into_2d_image(npa[j])) # normalise the data too
+            data.append(
+                npa_into_2d_image(np.rot90(npa_into_2d_image(npa[j]), j % 4, (2, 1)))) # normalise the data too and rotate
             labels.append(i)
     
     print("\t", "converting to np...")
@@ -69,7 +70,7 @@ def train_model(model, x_train, x_test, y_train, y_test):
     return model.fit(
         x_train,
         y_train,
-        epochs=15,
+        epochs=config.TRAIN_EPOCHS,
         validation_data=(x_test, y_test),
         callbacks=[early_stopping, lr_scheduler],
     )

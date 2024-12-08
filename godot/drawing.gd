@@ -36,9 +36,9 @@ static func image_to_npy(image: Image, output_filename: String) -> Error:
 	if output_filename.is_empty():
 		printerr("output filename is empty")
 		return ERR_FILE_BAD_PATH
-	if FileAccess.file_exists(output_filename):
-		printerr("file " + output_filename + " already exists")
-		return ERR_ALREADY_EXISTS
+	#if FileAccess.file_exists(output_filename):
+		#printerr("file " + output_filename + " already exists")
+		#return ERR_ALREADY_EXISTS
 	var file := FileAccess.open(output_filename, FileAccess.WRITE)
 	if file == null:
 		printerr("error opening file")
@@ -62,7 +62,7 @@ static func image_to_npy(image: Image, output_filename: String) -> Error:
 	for y in image.get_size().y:
 		for x in image.get_size().x:
 			# 0 is blank 1 is drawn
-			file.store_8(255 - image.get_pixel(x, y).r8)
+			file.store_8(255 - image.get_pixel(wrapi(x - 10, 0, 28), y).r8)
 	file.close()
 	return OK
 
@@ -84,7 +84,7 @@ func get_image() -> Image:
 			var i = 0
 			while i <= step:
 				img.set_pixel(int(x) % 256, int(y) % 256, Color.BLACK)
-				for rr in range(-4, 4, 1):
+				for rr in range(-5, 5, 1):
 					img.set_pixel(int(x + rr) % 256, int(y) % 256, Color.BLACK)
 					img.set_pixel(int(x) % 256, int(y + rr) % 256, Color.BLACK)
 					img.set_pixel(int(x + rr) % 256, int(y + rr) % 256, Color.BLACK)

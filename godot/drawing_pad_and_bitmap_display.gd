@@ -17,7 +17,7 @@ func _ready() -> void:
 	%ConvertButton.pressed.connect(func() -> void:
 		var drawing := drawing_pad.to_object()
 		var image := drawing.get_image()
-		image.resize(28, 28, Image.INTERPOLATE_CUBIC)
+		image.resize(28, 28, Image.INTERPOLATE_LANCZOS)
 		bitmap_display.texture = ImageTexture.create_from_image(image)
 		var err := Drawing.image_to_npy(image, filename_edit.text)
 		if err != OK:
