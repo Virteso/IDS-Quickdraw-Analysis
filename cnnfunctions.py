@@ -76,5 +76,12 @@ def train_model(model, x_train, x_test, y_train, y_test):
     )
 
 
+def get_class_probas(probas, class_names=config.DRAWING_NAMES):
+    a = {}
+    for i in range(len(probas)):
+        a[class_names[i]] = int(probas[i])
+    return a
+
+
 def npa_into_2d_image(nparr):
 	return np.reshape(nparr / 255.0, config.DRAWING_IMAGE_SIZE)
