@@ -38,17 +38,17 @@ def gather_data(class_names=config.DRAWING_NAMES):
 
 
 def create_model(classes=config.DRAWING_NAMES):
-    data_augmentation = tf.keras.Sequential([
+    """ data_augmentation = tf.keras.Sequential([
         layers.RandomFlip("horizontal"),
         layers.RandomRotation(0.2),
         layers.RandomZoom(0.2),
         layers.RandomTranslation(0.1, 0.1),
-    ])
+    ]) """
     
     print("creating model.")
     model = models.Sequential()
-    model.add(layers.Input(shape=config.DRAWING_IMAGE_SIZE))
-    model.add(data_augmentation)
+    model.add(layers.Input(shape=(config.DRAWING_IMAGE_SIZE, config.DRAWING_IMAGE_SIZE, 1)))
+    #model.add(data_augmentation)
     model.add(layers.Conv2D(32, (3, 3), activation="relu", padding="same"))
     model.add(layers.BatchNormalization())
     model.add(layers.MaxPooling2D((2, 2)))
@@ -100,4 +100,4 @@ def get_class_probas(probas, class_names=config.DRAWING_NAMES):
 
 
 def npa_into_2d_image(nparr):
-	return np.reshape(nparr / 255.0, config.DRAWING_IMAGE_SIZE)
+	return np.reshape(nparr / 255.0, (config.DRAWING_IMAGE_SIZE, config.DRAWING_IMAGE_SIZE, 1))
