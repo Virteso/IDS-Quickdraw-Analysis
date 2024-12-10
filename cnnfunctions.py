@@ -78,7 +78,7 @@ def train_model(model, x_train, x_test, y_train, y_test):
     early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
     lr_scheduler = tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=3, min_lr=1e-6)
     model_checkpoint = tf.keras.callbacks.ModelCheckpoint(
-        filepath='best_model.keras',  # Save in .keras format
+        filepath='best_model.keras',
         save_best_only=True,
         monitor='val_loss',
         mode='min'
