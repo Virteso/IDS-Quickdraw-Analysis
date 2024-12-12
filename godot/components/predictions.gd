@@ -48,6 +48,7 @@ func predict() -> Error:
 	var rsplit: PackedStringArray = outpud[0].split("\n")
 	var outdict := {}
 	var next_is_results_dict := false
+	#print(outpud)
 	for s in rsplit:
 		if next_is_results_dict:
 			outdict = str_to_var(s.replace("\\", "").replace("'", '"'))
@@ -55,6 +56,7 @@ func predict() -> Error:
 		if s.begins_with("RESULTS"):
 			next_is_results_dict = true
 	print(outdict)
+	
 	
 	var kys := outdict.keys()
 	kys.sort_custom(func(a: String, b: String) -> bool:

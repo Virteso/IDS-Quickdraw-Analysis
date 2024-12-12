@@ -15,7 +15,7 @@ the predicted object types.
 ### CNN Model
 **Downloading data**
 
-Run `./scripts/download_data.js` using Node to download all of the data files from the Google dataset. By default it downloads all numpy array drawing files into `./data/numpy_bitmap/`. You can edit the file if you need to download datasets processed in other ways.
+Run `./scripts/download_data.js` using Node to download all of the data files from the Google dataset. By default it downloads all numpy array drawing files into `./data/numpy_bitmap/`. You can edit the file if you need to download datasets processed in other ways. Check the [Quick! Draw](https://console.cloud.google.com/storage/browser/quickdraw_dataset) dataset storage on Google Cloud to check the paths if you need.
 
 **Using the Python script in `models/cnn/cnn.py`:**
 
@@ -36,6 +36,12 @@ You can edit `models/cnn/config.py` to change some settings regarding training m
 3. Run with F5
 
 The Godot project can help create drawings in the numpy array file format, and can also display prediction results when you specify filepaths for the model and drawing files.
+
+![alt text](readme/godotdiagram.png)
+
+The drawing pad is outlined in yellow, you can draw on it with your mouse. To save the image to a file, use the box outlined in red.
+
+To predict drawing classes, provide a drawing path and a model path (outlined in blue). The model will be loaded in along with the drawing and the three most probable class predictions will be displayed when you press the Make Prediction button (outlined in pink).
 
 ## Repository Contents
 ### Scripts

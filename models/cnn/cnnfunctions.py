@@ -16,13 +16,11 @@ def gather_data(class_names=config.DRAWING_NAMES):
         dname = class_names[i]
         
         print("\t", "loading file", dname + ".npy")
-        npa = np.load(config.NUMPY_DRAWING_FOLDER_PATH + config.FILENAME_PREFIX + dname + ".npy")
-                
-        print("\t\t", "storing...")
-        for j in range(min(config.LOAD_DRAWINGS_FROM_EACH_FILE, len(npa))):
-            data.append(
-                npa_into_2d_image(npa[j])) # normalise the data too
+        a = _getimages(dname, data)
+        for j in range(a):
             labels.append(i)
+        print("\t\t", "storing...")
+        
     
     print("\t", "converting to np...")
     data = np.array(data)
@@ -35,6 +33,14 @@ def gather_data(class_names=config.DRAWING_NAMES):
         train_size=config.TRAIN_PROPORTION,
         random_state=config.RANDOM_SEED,
     )
+
+
+def _getimages(dname, data):
+    npa = np.load(config.NUMPY_DRAWING_FOLDER_PATH + config.FILENAME_PREFIX + dname + ".npy")
+    for j in range(min(config.LOAD_DRAWINGS_FROM_EACH_FILE, len(npa))):
+        data.append(
+            npa_into_2d_image(npa[j])) # normalise the data too
+    return min(config.LOAD_DRAWINGS_FROM_EACH_FILE, len(npa))
 
 
 def create_model(classes=config.DRAWING_NAMES):
@@ -50,18 +56,19 @@ def create_model(classes=config.DRAWING_NAMES):
     model.add(layers.Input(shape=(config.DRAWING_IMAGE_SIZE, config.DRAWING_IMAGE_SIZE, 1)))
     #model.add(data_augmentation)
     model.add(layers.Conv2D(32, (3, 3), activation="relu", padding="same"))
-    model.add(layers.BatchNormalization())
+    #model.add(layers.BatchNormalization())
     model.add(layers.MaxPooling2D((2, 2)))
     model.add(layers.Conv2D(64, (3, 3), activation="relu", padding="same"))
-    model.add(layers.BatchNormalization())
+    #model.add(layers.BatchNormalization())
     model.add(layers.MaxPooling2D((2, 2)))
     model.add(layers.Conv2D(128, (3, 3), activation="relu", padding="same"))
-    model.add(layers.BatchNormalization())
+    #model.add(layers.BatchNormalization())
 
-    model.add(layers.GlobalAveragePooling2D())
-    model.add(layers.Dropout(0.5))
+    #model.add(layers.GlobalAveragePooling2D())
+    model.add(layers.Flatten())
+    #model.add(layers.Dropout(0.5))
     model.add(layers.Dense(128, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.01)))
-    model.add(layers.Dropout(0.5))
+    #model.add(layers.Dropout(0.5))
     model.add(layers.Dense(len(classes), activation="softmax"))
     
     print("\t", "compiling model...")
@@ -95,7 +102,7 @@ def train_model(model, x_train, x_test, y_train, y_test):
 def get_class_probas(probas, class_names=config.DRAWING_NAMES):
     a = {}
     for i in range(len(probas)):
-        a[class_names[i]] = int(probas[i])
+        a[class_names[i]] = float(probas[i])
     return a
 
 
