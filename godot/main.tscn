@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj2h20d4n8wae"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_5laph"]
-[ext_resource type="PackedScene" uid="uid://7m8hxols4o6r" path="res://drawing_pad_and_bitmap_display.tscn" id="2_vch4d"]
-[ext_resource type="PackedScene" uid="uid://bxilrntlaubxj" path="res://predictions.tscn" id="3_mtvif"]
+[ext_resource type="PackedScene" uid="uid://7m8hxols4o6r" path="res://components/drawing_pad_and_bitmap_display.tscn" id="2_vch4d"]
+[ext_resource type="PackedScene" uid="uid://bxilrntlaubxj" path="res://components/predictions.tscn" id="3_mtvif"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.157111, 0.171941, 0.214438, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,10 +30,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DrawingPadAndBitmapDisplay" parent="HBoxContainer" instance=ExtResource("2_vch4d")]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="BasePathEdit" type="LineEdit" parent="VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "../"
+placeholder_text = "base path"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="DrawingPadAndBitmapDisplay" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_vch4d")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Predictions" parent="HBoxContainer" instance=ExtResource("3_mtvif")]
+[node name="Predictions" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_mtvif")]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[connection signal="text_changed" from="VBoxContainer/VBoxContainer/MarginContainer/BasePathEdit" to="." method="set_basepath"]

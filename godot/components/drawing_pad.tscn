@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bnbn0w0pbtwj0"]
 
-[ext_resource type="Script" path="res://drawing_pad.gd" id="1_lu8pe"]
+[ext_resource type="Script" path="res://components/drawing_pad.gd" id="1_lu8pe"]
 
 [node name="DrawingPad" type="ColorRect"]
 custom_minimum_size = Vector2(512, 512)

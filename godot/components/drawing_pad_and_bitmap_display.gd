@@ -1,10 +1,10 @@
 extends PanelContainer
 
-const DrawingPad := preload("res://drawing_pad.gd")
+const DrawingPad := preload("res://components/drawing_pad.gd")
 
 @onready var bitmap_display: TextureRect = %BitmapDisplay
 @onready var drawing_pad: DrawingPad = %DrawingPad
-@onready var filename_edit: LineEdit = %FilenameEdit
+@onready var filename_edit: FilenamePicker = %FilenameEdit
 
 @onready var _placeholder_texture := bitmap_display.texture
 
@@ -14,15 +14,12 @@ func _ready() -> void:
 		drawing_pad.clear()
 		bitmap_display.texture = _placeholder_texture
 	)
-	%ConvertButton.pressed.connect(func() -> void:
+	%SaveAsBitmap.pressed.connect(func() -> void:
 		var image := display_image()
-		var err := Drawing.image_to_npy(image, filename_edit.text)
+		var err := Drawing.image_to_npy(image, filename_edit.fgetp())
 		if err != OK:
-			filename_edit.placeholder_text = error_string(err)
 			filename_edit.modulate = Color.RED
-			filename_edit.text = ""
 			filename_edit.mouse_entered.connect(func() -> void:
-				filename_edit.placeholder_text = "filename"
 				filename_edit.modulate = Color.WHITE
 			, CONNECT_ONE_SHOT)
 	)

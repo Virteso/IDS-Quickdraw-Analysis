@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxilrntlaubxj"]
+[gd_scene load_steps=3 format=3 uid="uid://bxilrntlaubxj"]
 
-[ext_resource type="Script" path="res://predictions.gd" id="1_t7ytw"]
+[ext_resource type="Script" path="res://components/predictions.gd" id="1_t7ytw"]
+[ext_resource type="PackedScene" uid="uid://d24fjx60ijp0c" path="res://components/filename_picker.tscn" id="2_ej122"]
 
 [node name="Predictions" type="PanelContainer"]
 anchors_preset = 15
@@ -20,15 +21,15 @@ theme_override_constants/margin_bottom = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="ModelFileLocationEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+[node name="ModelFileLocationEdit" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_ej122")]
 unique_name_in_owner = true
 layout_mode = 2
-placeholder_text = "model file location"
+placeholder = "Model path"
 
-[node name="PredictionFileLocationEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+[node name="PredictionFileLocationEdit" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_ej122")]
 unique_name_in_owner = true
 layout_mode = 2
-placeholder_text = "drawing file location"
+placeholder = "Drawing path"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -37,7 +38,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "make prediction"
+text = "Make Prediction"
 
 [node name="PredictionResultLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
