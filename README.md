@@ -52,3 +52,6 @@ Files regarding the convolutional neural network (Python scripts + trained saved
 
 ### Godot
 Files regarding the Godot app for visually creating and saving drawing files and predictions.
+
+### Other
+Jupyter Notebook files are used for testing by us so they are messy inside.
