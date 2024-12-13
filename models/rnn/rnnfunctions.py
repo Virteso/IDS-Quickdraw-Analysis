@@ -7,7 +7,7 @@ import os
 import config
 
 # Step 1: Load data with limits
-def load_data(output_path="./data/nparrays/", class_names=config.DRAWING_NAMES2, limit_per_class=None, beginning=0):
+def load_data(output_path="../.././data/nparrays/", class_names=config.DRAWING_NAMES2, limit_per_class=None, beginning=0):
     """
     Load data from saved numpy arrays and return it with labels.
     Allows limiting the number of samples per class.
