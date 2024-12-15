@@ -21,11 +21,12 @@ the predicted object types.
 - Scikit-Learn
 - Matplotlib
 - Optional: Godot 4.3
+- Optional: Node (to download the data files from Google Cloud, you can use any other method to do that)
 
 ### CNN Model
 **Downloading data**
 
-Run `./scripts/download_data.js` using Node to download all of the data files from the Google dataset. By default it downloads all numpy array drawing files into `./data/numpy_bitmap/`. You can edit the file if you need to download datasets processed in other ways. Check the [Quick! Draw](https://console.cloud.google.com/storage/browser/quickdraw_dataset) dataset storage on Google Cloud to check the paths if you need.
+One option is to run `./scripts/download_data.js` using Node to download all of the data files from the Google dataset. By default it downloads all numpy array drawing files into `./data/numpy_bitmap/`. You can edit the file if you need to download datasets processed in other ways. Check the [Quick! Draw](https://console.cloud.google.com/storage/browser/quickdraw_dataset) dataset storage on Google Cloud to check the paths if you need.
 
 **Using the Python script in `models/cnn/cnn.py`:**
 
@@ -64,4 +65,4 @@ Files regarding the convolutional neural network (Python scripts + trained saved
 Files regarding the Godot app for visually creating and saving drawing files and predictions.
 
 ### Other
-Jupyter Notebook files are used for testing by us so they are messy inside.
+Jupyter Notebook files are used for testing by us so they are not meant to be in presentable quality.
