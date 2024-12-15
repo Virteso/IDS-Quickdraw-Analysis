@@ -12,6 +12,15 @@ We set a goal of 75% accuracy with
 the predicted object types.
 
 ## How to Use
+### Dependencies
+-Python >=3.10
+-Tensorflow
+-Keras
+-Numpy
+-Scikit-Learn
+-Matplotlib
+-Optional: Godot 4.3
+
 ### CNN Model
 **Downloading data**
 
