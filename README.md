@@ -50,6 +50,9 @@ Scripts to download data, parse NDJSON files.
 ### Models/CNN
 Files regarding the convolutional neural network (Python scripts + trained saved models)
 
+### Models/RNN
+Files regarding the recurrent neural network. Configuration for training, saved models and scripts for training. The jupyter notebook file has examples of use and training.
+
 ### Godot
 Files regarding the Godot app for visually creating and saving drawing files and predictions.
 
