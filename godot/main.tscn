@@ -33,18 +33,6 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="BasePathEdit" type="LineEdit" parent="VBoxContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-text = "../"
-placeholder_text = "base path"
-
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
@@ -55,5 +43,3 @@ size_flags_horizontal = 3
 [node name="Predictions" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_mtvif")]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[connection signal="text_changed" from="VBoxContainer/VBoxContainer/MarginContainer/BasePathEdit" to="." method="set_basepath"]

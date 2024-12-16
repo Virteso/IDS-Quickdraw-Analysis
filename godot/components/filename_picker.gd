@@ -11,7 +11,7 @@ func _ready() -> void:
 	text_edit.placeholder_text = placeholder
 	$Button.pressed.connect(func() -> void:
 		file_dialog.file_mode = file_mode
-		file_dialog.root_subfolder = Main.get_base_path()
+		file_dialog.root_subfolder = "../"
 		file_dialog.popup_centered()
 		match file_mode:
 			FileDialog.FileMode.FILE_MODE_OPEN_FILE, FileDialog.FileMode.FILE_MODE_SAVE_FILE:
